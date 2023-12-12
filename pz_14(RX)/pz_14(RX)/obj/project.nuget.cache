@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "X5pNEtmFpzJz8/akQsewt3i01maHbvJm6Cmek8SzA4eLgnO4+d7NJK9PvXeXb8AttYagxVOjOSVXQxU1bzyEtw==",
+  "dgSpecHash": "kEF4+FVkJ0zQaaCf+P+VDZuaMeZByH7NyR5NYdzgqz+0O96scO7rHqkoFfs5o+yg30lfIQxZCFqd3zf3pBTLoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\User\\source\\repos\\4pk1_Pyatin\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\system.reactive\\6.0.0\\system.reactive.6.0.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.reactive.core\\6.0.0\\system.reactive.core.6.0.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
   "logs": []
 }

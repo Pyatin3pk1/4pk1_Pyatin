@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj": {}
+    "C:\\Users\\User\\source\\repos\\4pk1_Pyatin\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj": {
+    "C:\\Users\\User\\source\\repos\\4pk1_Pyatin\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\4pk1_Pyatin\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj",
         "projectName": "pz_14(RX)",
-        "projectPath": "C:\\Users\\User\\source\\repos\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\4pk1_Pyatin\\pz_14(RX)\\pz_14(RX)\\pz_14(RX).csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\pz_14(RX)\\pz_14(RX)\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\4pk1_Pyatin\\pz_14(RX)\\pz_14(RX)\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "System.Reactive.Core": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

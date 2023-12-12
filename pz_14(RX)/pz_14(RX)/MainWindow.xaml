@@ -5,33 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pz_14_RX_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="291*" ></RowDefinition>
-                <RowDefinition Height="143*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <UniformGrid Columns="1" Grid.Column="0">
-                <Label Content="Наименование"/>
-                <TextBox x:Name="Name"/>
-                <Label Content="Цена"/>
-                <TextBox x:Name="Price"/>
-                <Label Content="Количество"/>
-                <TextBox x:Name="Quantity"/>
-            </UniformGrid>
+        <UniformGrid Columns="2" Grid.Column="0" Grid.Row="0">
+            <Label Content="Название:" />
+            <TextBox x:Name="ItemNameTextBox" Width="100" Margin="5"/>
+            <Label Content="Количество:" />
+            <TextBox x:Name="ItemQuantityTextBox" Width="100" Margin="5"/>
+            <Label Content="Цена:" />
+            <TextBox x:Name="ItemPriceTextBox" Width="100" Margin="5"/>
 
-            <UniformGrid Columns="3" Grid.Row="1" Margin="0,30,0,30">
-                <Button MinWidth="100" x:Name="addBasketButton" Content="Добавить" Click="addBasketButton_Click"/>
-            </UniformGrid>
-        </Grid>
-
-        <ListBox x:Name="basketlIST" Grid.Column="1"/>
-
+        </UniformGrid>
+        <UniformGrid Grid.Row="0" Grid.Column="1">
+            <Button x:Name="AddItemButton"  Content="Добавить" Click="AddItemButton_Click"  RenderTransformOrigin="0.5,0.5" />
+            <Button x:Name="DeleteItemButton"  Content="Удалить" Click="DeleteItemButton_Click"  RenderTransformOrigin="0.5,0.5" />
+        </UniformGrid>
+        <DataGrid x:Name="ItemsDataGrid" Grid.Row="1" Grid.Column="0" MouseDoubleClick="ItemsDataGrid_MouseDoubleClick"/>
+        <UniformGrid Columns="2"  HorizontalAlignment="Right" Margin="0,25,31,221" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Общая стоимость:"  VerticalAlignment="Center"/>
+            <TextBlock x:Name="TotalCostTextBox" Width="150" Margin="5"/>
+            <TextBlock Text="Скидка:" VerticalAlignment="Center"/>
+            <TextBlock x:Name="DiscountTextBox" Width="150" Margin="5"/>
+            <TextBlock Text="Конечная цена:" VerticalAlignment="Center"/>
+            <TextBlock x:Name="FinishTextBox" Width="150" Margin="5"/>
+        </UniformGrid>
     </Grid>
 </Window>

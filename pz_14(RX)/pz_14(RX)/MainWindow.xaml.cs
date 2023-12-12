@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Reactive.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,29 +24,68 @@ namespace pz_14_RX_
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<Basket> baskets;
-
-        Basket currentBasket;
+        private readonly ObservableCollection<Item> _items = new ObservableCollection<Item>();
+        Item _item;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            baskets = new List<Basket>();
-            basketlIST.Items(baskets);
+            ItemsDataGrid.ItemsSource = _items;
         }
 
-        private void addBasketButton_Click(object sender, RoutedEventArgs e)
+        // Работу выполнили Пятин и Казаков
+        private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-            Basket bask = new Basket(Name.Text, int.Parse(Price.Text), int.Parse(Price.Text));
-            baskets.Add(bask);
+            var itemName = ItemNameTextBox.Text;
+            var itemQuantity = int.Parse(ItemQuantityTextBox.Text);
+            var itemPrice = decimal.Parse(ItemPriceTextBox.Text);
 
+            _items.Add(new Item { Name = itemName, Quantity = itemQuantity, Price = itemPrice });
             ClearForm();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var totalCost = _items.Sum(item => item.TotalCost);
+            var discount = totalCost * 0.1M; //10%
+            var finish = totalCost - discount;
+
+            TotalCostTextBox.Text = totalCost.ToString("C");
+            DiscountTextBox.Text = discount.ToString("C");
+            FinishTextBox.Text = finish.ToString("C");
+
+            var observable = Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
+                handler => (s, e) => handler(s, e),
+                handler => _items.CollectionChanged += handler,
+                handler => _items.CollectionChanged -= handler);
+
+            observable.Subscribe(args =>
+            {
+                totalCost = _items.Sum(item => item.TotalCost);
+                discount = totalCost * 0.1M;
+                var finish = totalCost - discount;
+
+                TotalCostTextBox.Text = totalCost.ToString("C");
+                DiscountTextBox.Text = discount.ToString("C");
+                FinishTextBox.Text = finish.ToString("C");
+            });
+        }
         void ClearForm()
         {
-            Name.Text = ""; Price.Text = ""; Quantity.Text = "";
+            ItemNameTextBox.Text = ""; ItemQuantityTextBox.Text = ""; ItemPriceTextBox.Text = "";
+        }
+        private void ItemsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            _item = (Item)ItemsDataGrid.SelectedItem;
+            ItemNameTextBox.Text = _item.Name;
+            ItemQuantityTextBox.Text = _item.Quantity.ToString();
+            ItemPriceTextBox.Text = _item.Price.ToString();
+        }
+        private void DeleteItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            _items.Remove(_item);
+            ClearForm();
         }
     }
+
 }
